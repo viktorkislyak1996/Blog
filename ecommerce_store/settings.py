@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ''
+SECRET_KEY = 'django-insecure-0nzvi)c335t)dx6+$b6ehg=uttk*2fdin##_&=3kj$gc!v^gmr'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -76,14 +76,7 @@ WSGI_APPLICATION = 'ecommerce_store.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'ecommerce_store',
-        'USER': 'user_store',
-        'PASSWORD': 'user_store',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+
 }
 
 # Password validation
@@ -138,3 +131,5 @@ EMAIL_HOST = 'smtp-relay.sendinblue.com'
 EMAIL_HOST_PASSWORD = 'Od6zVPJCjhgFAScU'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+from ecommerce_store.local_settings import *
