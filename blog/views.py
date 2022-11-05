@@ -1,4 +1,4 @@
-from django.contrib.postgres.search import SearchVector
+from django.contrib.postgres.search import SearchVector, SearchRank, SearchQuery, TrigramSimilarity
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView
@@ -83,6 +83,6 @@ def post_search(request):
     if form.is_valid():
         query = form.cleaned_data['query']
         result = Post.published.annotate(
-            search=SearchVector('title', 'body')
-        ).filter(search__icontains=query)
+            similarity=TrigramSimilarity('title', query),
+        ).filter(similarity__gte=0.3).order_by('-similarity')
     return render(request, 'blog/post/post_search.html', {'result': result, 'query': query, 'form': form})
